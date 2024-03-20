@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<title>Site Is Down</title>
+<head>
+<style>
+body {
+font-family: monospace;
+color: white;
+height: 100vh;
+margin: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: black;
+overflow: hidden;
+}
+.drop {
+position: absolute;
+top: 0;
+animation: fall linear infinite;
+text-shadow: 0 0 10px lime, 0 0 20px rgb(255, 0, 0), 0 0 30px rgb(255, 0, 0), 0 0 40px rgb(255, 0, 0);
+}
+@keyframes fall {
+0% { top: -50px; }
+100% { top: 100vh; }
+}
+#audio-background {
+display: none;
+}
+#modal {
+position: fixed;
+z-index: 1;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.5);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+#modal-content {
+background-color: black;
+color: white;
+padding: 20px;
+border: 1px solid #888;
+width: 30%;
+border-radius: 10px;
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+}
+#ok-button {
+margin-top: 10px;
+color: lime;
+}
+</style>
+<script type="text/javascript">
+document.onkeydown = function(e) {
+if (e.ctrlKey &&
+(e.keyCode === 67 ||
+e.keyCode === 86 ||
+e.keyCode === 85 ||
+e.keyCode === 117 ||
+e.keyCode === 83)) {
+return false;
+} else {
+return true;
+}
+};
+document.oncontextmenu = function(e) {
+return false;
+};
+</script>
+</head>
+<body>
+<script>
+
+for (let i = 0; i < 100; i++) {
+let drop = document.createElement('div');
+drop.className = 'drop';
+drop.style.left = Math.random() * window.innerWidth + 'px';
+drop.style.fontSize = Math.random() * 16 + 14 + 'px';
+drop.style.animationDuration = Math.random() * 2 + 2 + 's';
+drop.textContent = String.fromCharCode(0x30A0 + Math.random() * (0x30FF-0x30A0+1));
+document.body.appendChild(drop);
+}
+</script>
+
+<h1>Your security is a joke</h1>
+<div id="audio-background">
+<iframe id="audio-iframe" src="https://www.youtube.com/embed/NAoYn3mpNm0?autoplay=1&mute=1&controls=0&showinfo=0&autohide=1&loop=1&playlist=NAoYn3mpNm0"
+frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+
+<div id="modal">
+<div id="modal-content">
+<h1>This Site Is Down</h1>
+<button id="ok-button">OK</button>
+</div>
+</div>
+
+
+<script>
+document.getElementById('ok-button').addEventListener('click', function () {
+var iframe = document.getElementById('audio-iframe');
+iframe.src = iframe.src.replace('&mute=1', '&mute=0');
+document.getElementById('modal').style.display = "none";
+});
+</script>
+
+
+</body>
+</html>
